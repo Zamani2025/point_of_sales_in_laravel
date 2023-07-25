@@ -35,9 +35,9 @@
                                 <tr>
                                     <th></th>
                                     <th>Product</th>
-                                    <th></th>
                                     <th>Quantity</th>
                                     <th>Price</th>
+                                    <th>Discount (%)</th>
                                     <th>Total</th>
                                     <th></th>
                                 </tr>
@@ -49,7 +49,6 @@
                                         <td>
                                             <input readonly type="text" value="{{$item->product->name}}" name="product_id[]" id="" class="form-control">
                                         </td>
-                                        <td></td>
                                         <td>
                                             <div class="row">
                                                 <div class="col-md-2">
@@ -65,6 +64,9 @@
                                         </td>
                                         <td>
                                             <input type="number" name="price[]" readonly value="{{$item->product_price}}" class="form-control price" id="price">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" name="discount[]" id="discount">
                                         </td>
                                         <td>
                                             <input type="number" name="total[]"  readonly  value="{{$item->product_qty * $item->product_price}}" class="form-control total" id="total">
@@ -84,16 +86,6 @@
                             </tbody>
                         </table>
                     </div>
-                    @if (\App\Models\Cart::count() > 0)
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <h6>Discount (%)</h6>
-                                    <input type="number" placeholder="Discount" wire:model="discount" name="discount" id="" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -107,7 +99,6 @@
                     <input type="hidden" name="discount[]" id="discount">
                     <input type="hidden" name="total[]"  value="{{$item->product_qty * $item->product_price}}">
                     @endforeach
-                    <input type="hidden" placeholder="Discount" wire:model="discount" name="discount" id="" class="form-control">
                 <div class="card">
                     <div class="card-header p-3 bg-success text-white" ><h4>Total <b class="totals">{{number_format($totalprice, 2)}}</b></h4></div>
                     <div class="card-body">

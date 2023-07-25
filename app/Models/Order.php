@@ -14,7 +14,6 @@ class Order extends Model
         'phone',
         'order_code',
         'barcode',
-        'discount'
     ];
     protected function orderDetails() {
         return $this->hasMany(OrderDetail::class);

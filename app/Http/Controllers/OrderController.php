@@ -38,7 +38,7 @@ class OrderController extends Controller
             //Order Model
             $order = new Order();
             $order->name = $request->customer_name;
-            $order->discount = $request->discount;
+            // $order->discount = $request->discount;
             $order->order_code = $order_code;
             $order->barcode = $barcodes;
             $order->phone = $request->customer_phone;
@@ -53,7 +53,7 @@ class OrderController extends Controller
                 $orderDetail->unitprice = $request->price[$product_id];
                 $orderDetail->quantity = $request->quantity[$product_id];
                 $orderDetail->amount = $request->total[$product_id];
-                // $orderDetail->discount = $request->discount[$product_id];
+                $orderDetail->discount = $request->discount[$product_id];
                 $orderDetail->save();
 
                 $product = Product::where('id', $request->product_id[$product_id])->first();
