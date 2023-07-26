@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ReturnProduct;
 use App\Models\Product;
 use App\Models\OrderDetail;
+use App\Models\Order;
 
 class ReturnProductController extends Controller
 {
@@ -39,7 +40,7 @@ class ReturnProductController extends Controller
             $orderDetial->amount -= $request->price;
             $orderDetial->save();
 
-            $order = OrdeDetail::where('id', $orderDetial->order_id)->first();
+            $order = Order::where('id', $orderDetial->order_id)->first();
             $order->total_price -= $request->price;
             $order->save();
 
