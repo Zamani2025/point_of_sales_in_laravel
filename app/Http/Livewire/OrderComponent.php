@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class OrderComponent extends Component
 {
-    public $product_code, $totalprice, $productIncart, $pay_money, $balance, $discount, $total = [];
+    public $product_code, $totalprice, $productIncart, $pay_money, $balance, $discount, $total, $haveDiscount = 0;
 
     public function mount(){
         $this->productIncart = Cart::all();
@@ -78,9 +78,9 @@ class OrderComponent extends Component
     {
         $products = Product::where('product_status', 1)->get();
         $invoice_id = rand(1000, 10000);
-        $last_id = OrderDetail::max('order_id');
+        $last_id = Order::max('id');
         $order_receipts = OrderDetail::where('order_id', $last_id)->whereDate("created_at", Carbon::today())->get();
-        $subtotal = OrderDetail::where('order_id', $last_id)->sum('amount');
+        $subtotal = Order::where('id', $last_id)->sum('total_price');
         return view('livewire.order-component', compact('products','subtotal', 'order_receipts', 'invoice_id'));
     }
 }

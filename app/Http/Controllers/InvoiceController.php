@@ -25,7 +25,7 @@ class InvoiceController extends Controller
         $subtotal = OrderDetail::where('order_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
         $pdf = PDF::loadView('invoice-component', compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'payment_method'))->setOptions(['defaultFont' => 'sans-serif']);
 
-        return $pdf->download('order_'.$invoice_id.'.pdf');
+        return $pdf->download('order#'.$invoice_id.'.pdf');
     }
 
     public function prev(){
@@ -40,7 +40,7 @@ class InvoiceController extends Controller
 
     public function monthly_invoice() {
         $invoice_id = rand(1000, 10000);
-        $monthlyRevenue = OrderDetail::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->sum("amount");
+        $monthlyRevenue = Order::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->sum("total_price");
         $monthlyInvoice = OrderDetail::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->get();
         return view('monthly_sales_invoice', compact('invoice_id', 'monthlyRevenue', 'monthlyInvoice'));
     }
@@ -63,7 +63,7 @@ class InvoiceController extends Controller
         $order_receipts = EstimateDetail::orderBy('created_at', 'DESC')->where('estimate_id', $last_id)->whereDate("created_at", Carbon::now())->get();
         $subtotal = EstimateDetail::where('estimate_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
         $pdf = PDF::loadView('estimate_invoice',compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'charges'));
-        return $pdf->download('estimate_'.$invoice_id.'.pdf');
+        return $pdf->download('estimate#'.$invoice_id.'.pdf');
     }
     public function employee_invoice(){
         $invoice_id = rand(1000, 10000);
@@ -75,7 +75,7 @@ class InvoiceController extends Controller
         $invoice_id = rand(1000, 10000);
         $employees = Employee::all();
         $pdf = PDF::loadView('employee_invoice', compact('invoice_id', 'employees'));
-        return $pdf->download('employee_'.$invoice_id.'.pdf');
+        return $pdf->download('employee#'.$invoice_id.'.pdf');
     }
     public function stock_invoice(){
         $invoice_id = rand(1000, 10000);
@@ -87,6 +87,6 @@ class InvoiceController extends Controller
         $invoice_id = rand(1000, 10000);
         $products = Product::all();
         $pdf = PDF::loadView('stock_invoice', compact('invoice_id', 'products'));
-        return $pdf->download('stock_invoice_'.$invoice_id. '.pdf');
+        return $pdf->download('stock_invoice#'.$invoice_id. '.pdf');
     }
 }

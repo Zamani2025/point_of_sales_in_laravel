@@ -33,11 +33,11 @@ class HomeController extends Controller
         $totalIncomingProducts = Product::where('product_status', 0)->count();
         $totalOrders = Order::count();
         $totalSuppliers = Supplier::count();
-        $totalRevenue = OrderDetail::sum("amount");
+        $totalRevenue = Order::sum("total_price");
         $todaySales = OrderDetail::whereDate("created_at", Carbon::today()->format('Y-m-d'))->count();
-        $todayRevenue = OrderDetail::whereDate("created_at", Carbon::today()->format('Y-m-d'))->sum("amount");
+        $todayRevenue = Order::whereDate("created_at", Carbon::today()->format('Y-m-d'))->sum("total_price");
         $monthlySales = OrderDetail::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->count();
-        $monthlyRevenue = OrderDetail::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->sum("amount");
+        $monthlyRevenue = Order::whereYear("created_at", Carbon::now()->year)->whereMonth("created_at", Carbon::now()->month)->sum("total_price");
         return view('home', compact('monthlyRevenue','monthlySales','totalSales', 'totalRevenue', 'todaySales','totalIncomingProducts', 'todayRevenue', 'totalSuppliers', 'totalProducts', 'totalOrders'));
     }
 }

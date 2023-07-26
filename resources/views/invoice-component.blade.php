@@ -75,7 +75,7 @@
               <td></td>
               <td></td>
               <td class="Rate"><p>Total</h2></p>
-              <td class="payment"><p>{{ number_format($subtotal, 2) }}</p></td>
+              <td class="payment"><p>{{ number_format($order->total_price, 2) }}</p></td>
             </tr>
 
           </table>

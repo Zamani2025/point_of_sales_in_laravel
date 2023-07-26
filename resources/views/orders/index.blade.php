@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         @livewire('order-component')
-        <!-- Model of adding user ---> 
-        
+        <!-- Model of adding user --->
+
         <!-- Modal -->
         <div class="modal right fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
             @include('calculator.index')
@@ -53,17 +53,17 @@
 @section('script')
     <script>
         //Print Section
-        function PrintReceiptContent(id){
-            var data = document.getElementById(id).innerHTML;
-            var myReceipt = window.open("", "myWin", "left=150, top=150, width=400, height=400");
-            myReceipt.screenX = 0;
-            myReceipt.screenY = 0;
-            myReceipt.document.write(data);
-            myReceipt.document.title = 'Print Receipt';
-            myReceipt.focus();
-            setTimeout(() => {
-                myReceipt.close();
-            }, 10000);
-        }
-    </script>   
+        // function PrintReceiptContent(id){
+        //     var data = document.getElementById(id).innerHTML;
+        //     var myReceipt = window.open("", "myWin", "left=150, top=150, width=400, height=400");
+        //     myReceipt.screenX = 0;
+        //     myReceipt.screenY = 0;
+        //     myReceipt.document.write(data);
+        //     myReceipt.document.title = 'Print Receipt';
+        //     myReceipt.focus();
+        //     setTimeout(() => {
+        //         myReceipt.close();
+        //     }, 10000);
+        // }
+    </script>
 @endsection

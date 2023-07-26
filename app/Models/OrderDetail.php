@@ -12,7 +12,6 @@ class OrderDetail extends Model
     protected $fillable = [
         'unitprice',
         'amount',
-        'discount',
         'quantity',
     ];
     public function order()

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name")->nullable();
             $table->string("phone")->nullable();
+            $table->integer("discount")->nullable();
+            $table->integer("total_price")->nullable();
             $table->string("order_code")->nullable();
             $table->text("barcode")->nullable();
             $table->timestamps();

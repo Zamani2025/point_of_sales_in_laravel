@@ -32,12 +32,16 @@ class ReturnProductController extends Controller
     {
         $product = Product::where('name', $request->product_name)->first();
         if($product){
-            $orderDetial = OrderDetail::where('product_id', $product->id)->first();
             $product->quantity += $request->quantity;
             $product->save();
 
+            $orderDetial = OrderDetail::where('product_id', $product->id)->first();
             $orderDetial->amount -= $request->price;
             $orderDetial->save();
+
+            $order = OrdeDetail::where('id', $orderDetial->order_id)->first();
+            $order->total_price -= $request->price;
+            $order->save();
 
             $return_product = new ReturnProduct();
             $return_product->name = $request->name;
