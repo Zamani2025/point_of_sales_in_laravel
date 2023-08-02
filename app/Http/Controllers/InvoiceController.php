@@ -25,7 +25,7 @@ class InvoiceController extends Controller
         $subtotal = OrderDetail::where('order_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
         $pdf = PDF::loadView('invoice-component', compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'payment_method'))->setOptions(['defaultFont' => 'sans-serif']);
 
-        return $pdf->download('order#'.$invoice_id.'.pdf');
+        return $pdf->download($order->name.'_'.'.pdf');
     }
 
     public function prev(){
@@ -63,7 +63,7 @@ class InvoiceController extends Controller
         $order_receipts = EstimateDetail::orderBy('created_at', 'DESC')->where('estimate_id', $last_id)->whereDate("created_at", Carbon::now())->get();
         $subtotal = EstimateDetail::where('estimate_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
         $pdf = PDF::loadView('estimate_invoice',compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'charges'));
-        return $pdf->download('estimate#'.$invoice_id.'.pdf');
+        return $pdf->download($order->name.'_'.'.pdf');
     }
     public function employee_invoice(){
         $invoice_id = rand(1000, 10000);

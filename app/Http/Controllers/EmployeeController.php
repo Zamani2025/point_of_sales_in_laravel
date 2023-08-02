@@ -21,6 +21,7 @@ class EmployeeController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->ssnit_number = $request->ssnit_number;
         $user->role = $request->role;
         $user->salary = $request->salary;
         $user->date = $request->date;
@@ -36,6 +37,7 @@ class EmployeeController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'role' => $request->role,
+            'ssnit_number' => $request->ssnit_number,
             'salary' => $request->salary,
         ]);
 

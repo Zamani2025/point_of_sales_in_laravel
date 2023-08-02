@@ -31,6 +31,12 @@
     </div>
     <div class="col-md-12">
         <div class="form-group">
+            <label for="">SSNIT Number</label>
+            <input type="text" value="{{$userDetails->ssnit_number}}" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
             <label for="">Date</label>
             <input type="text" value="{{$userDetails->date}}" class="form-control" readonly>
         </div>

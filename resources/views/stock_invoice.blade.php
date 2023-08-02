@@ -12,8 +12,9 @@
           <p>
             Kumasi <br>
             Ghana<br>
-            +233 244615023 <br>
-            info@thenewviewconstructions.com
+            +233 244615023 | 0322191407 | 0200057241 <br>
+            info@thenewviewconstructions.com <br>
+            www.thenewviewconstructions.com <br>
           </p>
         </div><!--End Info-->
         <div class="title">
@@ -27,7 +28,7 @@
 
 
       <div id="invoice-mid">
-        <div style="margin-left: 7%;">
+        <div style="margin-left: 2%; margin-top: 12%;">
             <h2>Stock Invoice</h2>
         </div>
 

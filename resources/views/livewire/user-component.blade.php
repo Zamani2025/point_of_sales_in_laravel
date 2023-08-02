@@ -96,16 +96,16 @@
                     <input type="number" name="salary" id="salary" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="salary">Date</label>
-                    <input type="date" name="date" id="salary" class="form-control"/>
+                    <label for="ssnit_number">SSNIT Number</label>
+                    <input type="text" name="ssnit_number" id="ssnit_number" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label for="role">Role</label>
-                    <select name="role" id="role" class="form-control">
-                        <option value="Driver">Driver</option>
-                        <option value="Security">Security</option>
-                        <option value="Cashire">Cashire</option>
-                    </select>
+                    <input type="text" name="role" id="role" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Date</label>
+                    <input type="date" name="date" id="salary" class="form-control"/>
                 </div>
                 <div class="modal-fotter">
                     <button class="btn btn-block btn-primary" type="submit">Save Employee</button>

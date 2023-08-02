@@ -12,8 +12,10 @@
           <p>
             Kumasi <br>
             Ghana<br>
-            +233 244615023 <br>
-            info@thenewviewconstructions.com
+            +233 244615023 | 0322191407 | 0200057241 <br>
+            info@thenewviewconstructions.com <br>
+            www.thenewviewconstructions.com <br>
+
           </p>
         </div><!--End Info-->
         <div class="title">
@@ -31,7 +33,7 @@
           <h2></h2>
           <p></p>
         </div>
-        <div style="margin-left: 7%;">
+        <div style="margin-left: 2%; margin-top: 12%;">
             <h2>Employee Invoice</h2>
         </div>
 
@@ -42,12 +44,12 @@
         <div id="table">
           <table>
             <tr class="tabletitle">
-              <td class="item"><h2>Name</h2></td>
+              <td class="Hours"><h2>Name</h2></td>
               <td class="Hours"><h2>Email</h2></td>
               <td class="Rate"><h2>Phone</h2></td>
               <td class="Rate"><h2>Salary</h2></td>
               <td class="Rate"><h2>Role</h2></td>
-              <td class="Rate"><h2>Date</h2></td>
+              <td class="Rate"><h2>SSNIT</h2></td>
             </tr>
 
             @foreach ($employees as $employee)
@@ -57,7 +59,7 @@
                     <td class="tableitem"><p class="itemtext">{{ $employee->phone }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $employee->salary }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $employee->role }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ $employee->date }}</p></td>
+                    <td class="tableitem"><p class="itemtext">{{ $employee->ssnit_number }}</p></td>
                 </tr><br>
 
             @endforeach

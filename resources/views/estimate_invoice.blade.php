@@ -12,13 +12,15 @@
           <p>
             Kumasi <br>
             Ghana<br>
-            +233 244615023 <br>
-            info@thenewviewconstructions.com
+            +233 244615023 | 0322191407 | 0200057241 <br>
+            info@thenewviewconstructions.com <br>
+            www.thenewviewconstructions.com <br>
+
           </p>
         </div><!--End Info-->
         <div class="title">
           <h1>Invoice #{{ $invoice_id }}</h1>
-          <p>Order ID: {{ $last_id }}</br>
+          <p>Order ID: {{ $last_id }}<br>
              Date: {{ \Carbon\Carbon::now()->toFormattedDateString() }}
           </p>
         </div><!--End Title-->
@@ -39,8 +41,8 @@
             <h2>Bill To:</h2>
             @if ($order)
             <p>
-              {{ $order->name }}</br>
-               {{ $order->phone }}</br>
+              {{ $order->name }}<br>
+               {{ $order->phone }}<br>
             </p>
             @endif
         </div>

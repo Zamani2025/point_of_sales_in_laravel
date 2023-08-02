@@ -14,5 +14,6 @@ class Employee extends Model
         'salary',
         'role',
         'date',
+        'ssnit_number',
     ];
 }

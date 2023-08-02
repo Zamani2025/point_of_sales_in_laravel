@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone')->unique();
             $table->string('salary');
+            $table->string('ssnit_number');
             $table->string('role')->nullable();
             $table->string('date')->nullable();
             $table->timestamps();

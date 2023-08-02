@@ -7,6 +7,7 @@
             <th>Phone</th>
             <th>Salary</th>
             <th>Role</th>
+            <th>SSNIT Number</th>
             <th>Date</th>
             @if(Auth::user()->is_admin)
                 <th>Edit</th>
@@ -24,6 +25,7 @@
                     <td>{{$user->phone}}</td>
                     <td>{{$user->salary}}</td>
                     <td>{{ $user->role }}</td>
+                    <td>{{ $user->ssnit_number }}</td>
                     <td>{{ $user->date }}</td>
                     @if(Auth::user()->is_admin)
                         <td><a href="#"  data-toggle="modal" data-target="#editUserModal{{$user->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
@@ -63,16 +65,17 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Password</label>
-                                    <input type="password" readonly value="{{$user->password}}" name="password" id="password" class="form-control"/>
+                                    <label for="salary">Salary</label>
+                                    <input type="number" value="{{$user->salary}}" name="salary" id="salary" class="form-control"/>
 
                                 </div>
                                 <div class="form-group">
+                                    <label for="ssnit_number">SSNIT Number</label>
+                                    <input type="text" value="{{$user->ssnit_number}}" name="ssnit_number" id="ssnit_number" class="form-control"/>
+                                </div>
+                                <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select name="is_admin" id="role" class="form-control">
-                                        <option value="1" @if($user->is_admin == 1) selected @endif>Admin</option>
-                                        <option value="2" @if($user->is_admin == 2) selected @endif>Cashire</option>
-                                    </select>
+                                    <input type="text" value="{{$user->role}}" name="role" id="role" class="form-control"/>
                                 </div>
                                 <div class="modal-fotter">
                                     <button class="btn btn-block btn-primary" type="submit">Edit Employee</button>
@@ -97,6 +100,7 @@
                     <td>{{$user->phone}}</td>
                     <td>{{number_format($user->salary, 2)}}</td>
                     <td>{{ $user->role }}</td>
+                    <td>{{ $user->ssnit_number }}</td>
                     <td>{{ $user->date }}</td>
                     @if(Auth::user()->is_admin)
                         <td><a href="#"  data-toggle="modal" data-target="#editUserModal{{$user->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
@@ -135,17 +139,17 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="image">Salary</label>
-                                    <input type="number" readonly value="{{$user->salary}}" name="salary" id="password" class="form-control"/>
+                                    <label for="salary">Salary</label>
+                                    <input type="number" value="{{$user->salary}}" name="salary" id="salary" class="form-control"/>
 
                                 </div>
                                 <div class="form-group">
+                                    <label for="ssnit_number">SSNIT Number</label>
+                                    <input type="text" value="{{$user->ssnit_number}}" name="ssnit_number" id="ssnit_number" class="form-control"/>
+                                </div>
+                                <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select name="role" id="role" class="form-control">
-                                        <option value="Driver" @if($user->role == "Driver") selected @endif>Driver</option>
-                                        <option value="Security" @if($user->role == "Security") selected @endif>Security</option>
-                                        <option value="Cashire" @if($user->role == "Cashire") selected @endif>Cashire</option>
-                                    </select>
+                                    <input type="text" value="{{$user->role}}" name="role" id="role" class="form-control"/>
                                 </div>
                                 <div class="modal-fotter">
                                     <button class="btn btn-block btn-primary" type="submit">Edit Employee</button>
