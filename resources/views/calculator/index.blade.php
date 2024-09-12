@@ -42,7 +42,7 @@
         width: 25%;
         border-radius: 15px;
         background: rgb(52, 73, 94);
-        box-shdow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+        box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
     }
     input#calInput{
         width: 100%;
@@ -63,8 +63,8 @@
     }
     button.btncalculator{
         border: none;
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 48px;
         margin: 10px;
         border-radius: 20px;
         background: transparent;

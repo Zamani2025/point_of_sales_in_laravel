@@ -140,16 +140,11 @@
                                 <td>Payment method
                                     <div class="items">
                                         <span class="radio-item">
-                                            <input type="radio" required name="payment_method" id="cash" class="form-check-input" value="cash" checked="checked">
+                                            <input type="radio" required name="payment_method" id="cash" class="form-check-input" value="cash">
                                             <label for="cash" class="form-check-label"><i class="fa fa-money-bill text-success"></i> Cash</label>
                                         </span>
                                         <span class="radio-item">
-                                            <input type="radio" required name="payment_method" id="bank" class="form-check-input" value="bank transfer">
-                                            <label for="bank" class="form-check-label"><i class="fa fa-university text-danger"></i> Bank Transfer</label>
-                                        </span>
-                                        <span class="radio-item">
-                                            <input type="radio" required name="payment_method" id="card" class="form-check-input" value="mobile money">
-                                            <label for="card" class="form-check-label"> <i class="fa fa-credit-card text-info"></i> Momo Pay</label>
+                                            <button type="button" onclick="makePayment()" class="btn btn-danger btn-sm">Pay With Card / MOMO</button>
                                         </span>
                                     </div>
                                 </td><br>
@@ -170,3 +165,35 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    function makePayment() {
+        var paystack = new PaystackPop();
+        var handler = PaystackPop.setup({
+            key: "pk_test_a14e60a1493c7f848279d1435433cd7d5fc52e51",
+            email: "iddishani1@gmail.com",
+            amount: 100 * 100,
+            currency: "GHS",
+            metadata: {
+                custome_fields: [
+                    {
+                        display_name: "Shani Iddi",
+                        variable_name: "Shani Iddi",
+                        value: "0552732025"
+                    }
+                ]
+            },
+            callback: function(response){
+                window.close();
+            },
+            onClose: function(){
+                window.close();
+            }
+        });
+
+        handler.openIframe();
+    }
+</script>
+<script src="https://js.paystack.co/v2/inline.js"></script>

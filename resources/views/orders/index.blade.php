@@ -5,10 +5,10 @@
         @livewire('order-component')
         <!-- Model of adding user --->
 
-        <!-- Modal -->
-        <div class="modal right fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
-            @include('calculator.index')
-        </div>
+    <!-- Modal -->
+    <div class="modal right fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
+        @include('calculator.index')
+    </div>
     </div>
     <div class="modal">
         <div id="print">

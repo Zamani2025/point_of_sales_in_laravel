@@ -1,6 +1,7 @@
 <li class="nav-item">
     <a href="/" class="btn btn-outline "><i class="fa fa-home"></i></a>
 </li>
+@auth
 <li class="nav-item">
     <a href="{{route('estimate')}}" class="btn btn-outline ">Estimate</a>
 </li>
@@ -38,6 +39,7 @@
         </li>
     @endif
 @endif
+@endauth
 
 <style>
     .btn-outline{
