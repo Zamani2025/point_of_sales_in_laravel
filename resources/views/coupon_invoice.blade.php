@@ -28,7 +28,7 @@
 
       <div id="invoice-mid">
         <div style="margin-left: 2%; margin-top: 12%;">
-            <h2>Stock Invoice</h2>
+            <h2>Coupons</h2>
         </div>
 
       </div><!--End Invoice Mid-->
@@ -37,31 +37,22 @@
 
         <div id="table">
           <table>
-            <tr class="tabletitle">
-              <td class="item"><h2>Product Name</h2></td>
-              <td class="Hours"><h2>Price</h2></td>
-              <td class="Rate"><h2>Quantity</h2></td>
-              <td class="Rate"><h2>Status</h2></td>
-              <td class="Rate"><h2>Stock</h2></td>
-            </tr>
-
-            @foreach ($products as $product)
-                <tr class="service">
-                    <td class="tableitem"><p class="itemtext">{{ $product->name }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ number_format($product->price, 2) }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ $product->quantity }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ $product->product_status }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ $product->alert_stock }}</p></td>
+            @foreach ($coupons as $coupon)
+                <tr class="tabletitle">
+                <td class="item"><h2>Coupon Name</h2></td>
+                <td class="Hours"><h2>Token</h2></td>
+                <td class="Rate"><h2>Discount</h2></td>
+                </tr>
+                <tr>
+                    <td class="tableitem"  style="padding-top: 60px !important; padding-bottom: 60px !important; text-align: center;"><p class="itemtext">{{ $coupon->name }}</p></td>
+                    <td class="tableitem"  style="padding-top: 60px !important; padding-bottom: 60px !important; text-align: center;"><p class="itemtext">{{ $coupon->token }}</p></td>
+                    <td class="tableitem" style="padding-top: 60px !important; padding-bottom: 60px !important; text-align: center;"><p class="itemtext">{{ $coupon->discount }}</p></td>
                 </tr><br>
 
             @endforeach
           </table>
         </div><br><br><!--End Table-->
         <button id="print" onclick="printReceipt()" type="button" style="cursor: pointer; padding: 12px 40px; border-radius: 10px; border: none; margin-top: 30px; background: green; color: white; font-size: 16px; font-weight: bold;">Print Receipt</button>
-        <div id="legalcopy">
-          {{-- <p class="" style="text-align: center;"><strong>Thank you for your patronage!</strong> --}}
-          </p>
-        </div>
 
       </div><!--End InvoiceBot-->
     </div><!--End Invoice-->

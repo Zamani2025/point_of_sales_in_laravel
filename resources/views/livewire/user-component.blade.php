@@ -46,7 +46,7 @@
                             <div class="col-md-12 mt-4">
                                 <form action="" method="post" wire:submit.prevent="searchUserByEmail">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Search by email</label>
+                                        <label for="" class="form-label">Search by Employee ID</label>
                                         <input type="search" wire:model="searchByEmail" class="form-control" placeholder="Type here...">
                                     </div>
                                     <div class="form-group">
@@ -76,6 +76,11 @@
         <div class="modal-body">
             <form action="{{route('adduser')}}" method="post">
                 @csrf
+                <div class="form-group">
+                    <label for="name">Employee ID</label>
+                    <input type="text" name="employeeID" id="emp_id" class="form-control"/>
+
+                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control"/>

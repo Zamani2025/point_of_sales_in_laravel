@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast\String_;
 
 class TransactionController extends Controller
 {
@@ -33,9 +37,15 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function show(string $id)
     {
-        //
+        $transaction = Transaction::where('id', $id)->first();
+        $payment_method = Transaction::select('payment_method', 'order_ids')->where('id', $id)->first();
+        $order = Order::where('id', $transaction->order_id)->first();
+        $last_id = $order->id;
+        $order_receipts = OrderDetail::orderBy('created_at', 'DESC')->where('order_id', $order->id)->get();
+        // dd($order_receipts);
+        return view('invoice-component', compact('order_receipts', 'order', 'transaction', 'payment_method', 'last_id'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupen;
 use Illuminate\Http\Request;
 use App\Models\OrderDetail;
 use App\Models\EstimateDetail;
@@ -13,6 +14,7 @@ use App\Models\Transaction;
 use App\Models\EstimateTransaction;
 use Carbon\Carbon;
 use PDF;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class InvoiceController extends Controller
 {
@@ -20,7 +22,7 @@ class InvoiceController extends Controller
         $invoice_id = rand(1, 1000);
         $last_id = OrderDetail::max('order_id');
         $order = Order::where('id', $last_id)->whereDate("created_at", Carbon::now())->first();
-        $payment_method = Transaction::select('payment_method')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->first();
+        $payment_method = Transaction::select('payment_method', 'order_id')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->first();
         $order_receipts = OrderDetail::orderBy('created_at', 'DESC')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->get();
         $subtotal = OrderDetail::where('order_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
         $pdf = PDF::loadView('invoice-component', compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'payment_method'))->setOptions(['defaultFont' => 'sans-serif']);
@@ -30,11 +32,17 @@ class InvoiceController extends Controller
 
     public function prev(){
         $invoice_id = rand(1000, 10000);
-        $last_id = OrderDetail::max('order_id');
+        $latest_order = Order::latest('created_at')->first();
+        if (!$latest_order) {
+            toastr()->error('No orders found for today.');
+            return back();
+        }
+        $last_id = $latest_order->id;
         $order = Order::where('id', $last_id)->whereDate("created_at", Carbon::now())->first();
-        $payment_method = Transaction::select('payment_method')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->first();
+        $payment_method = Transaction::select('payment_method', 'order_ids')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->first();
         $order_receipts = OrderDetail::orderBy('created_at', 'DESC')->where('order_id', $last_id)->whereDate("created_at", Carbon::now())->get();
         $subtotal = OrderDetail::where('order_id', $last_id)->whereDate("created_at", Carbon::now())->sum('amount');
+        // dd($order_receipts);
         return view('invoice-component', compact('order_receipts', 'subtotal', 'last_id', 'invoice_id', 'order', 'payment_method'));
     }
 
@@ -88,5 +96,10 @@ class InvoiceController extends Controller
         $products = Product::all();
         $pdf = PDF::loadView('stock_invoice', compact('invoice_id', 'products'));
         return $pdf->download('stock_invoice#'.$invoice_id. '.pdf');
+    }
+
+    public function coupons(){
+        $coupons = Coupen::all();
+        return view('coupon_invoice', compact('coupons'));
     }
 }

@@ -17,6 +17,7 @@
                                         <th>Amount</th>
                                         <th>Paid</th>
                                         <th>Balance</th>
+                                        <th>Order ID</th>
                                         <th>Method</th>
                                         <th> Date</th>
                                     </tr>
@@ -30,6 +31,7 @@
                                                 <td>{{number_format($transaction->transac_amount, 2)}}</td>
                                                 <td>{{number_format($transaction->paid_amount, 2)}}</td>
                                                 <td>{{$transaction->balance}}</td>
+                                                <td>{{$transaction->order_ids}}</td>
                                                 <td>{{$transaction->payment_method}}</td>
                                                 <td>{{$transaction->created_at->toFormattedDateString()}}</td>
                                             </tr>
@@ -44,10 +46,11 @@
                                         @foreach($transactions as $key => $transaction)
                                             <tr>
                                                 <td>{{$key + 1}}</td>
-                                                <td>{{$transaction->order->name}}</td>
+                                                <td><a href="{{ route('printtrans', $transaction->id) }}" style="text-decoration: none; color: black;">{{$transaction->order->name}}</a></td>
                                                 <td>{{number_format($transaction->transac_amount, 2)}}</td>
                                                 <td>{{number_format($transaction->paid_amount, 2)}}</td>
                                                 <td>{{$transaction->balance}}</td>
+                                                <td>{{$transaction->order_ids}}</td>
                                                 <td>{{$transaction->payment_method}}</td>
                                                 <td>{{$transaction->created_at->toFormattedDateString()}}</td>
                                             </tr>
@@ -68,7 +71,7 @@
             <div class="col-md-12">
                 <form wire:submit.prevent="searchTransactionByName">
                     <div class="form-group">
-                        <label for="" class="form-label">Search by price</label>
+                        <label for="" class="form-label">Search by Order ID</label>
                         <input type="number" wire:model="searchByName" class="form-control" placeholder="Type here...">
                     </div>
                     <div class="form-group">

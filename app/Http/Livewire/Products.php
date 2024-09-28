@@ -17,7 +17,7 @@ class Products extends Component
 
     }
     public function searchProductByName(){
-        $this->searchProducts = Product::where('name', 'like', '%' . $this->searchByName . '%')->where('product_status', 1)->get();
+        $this->searchProducts = Product::where('name', 'like', '%' . trim($this->searchByName) . '%')->where('product_status', 1)->get();
         // dd($this->searchProduct);
     }
     public function searchProductByPrice(){

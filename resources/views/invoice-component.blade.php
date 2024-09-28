@@ -19,7 +19,7 @@
           </p>
         </div><!--End Info-->
         <div class="title">
-          <h1>Invoice #{{ $invoice_id }}</h1>
+          <h1>Invoice: {{ $payment_method->order_ids }}</h1>
           <p>Order ID: {{ $last_id }}<br>
              Payment Due: {{ \Carbon\Carbon::now()->toFormattedDateString() }}
           </p>
@@ -55,39 +55,37 @@
               <td class="item"><h2>Product Name</h2></td>
               <td class="Hours"><h2>Price</h2></td>
               <td class="Rate"><h2>Quantity</h2></td>
-              <td class="subtotal"><h2>Sub-total</h2></td>
+              <td class="subtotal"><h2></h2></td>
             </tr>
 
             @foreach ($order_receipts as $receipt)
-                <tr class="service">
+                <tr class="">
                     <td class="tableitem"><p class="itemtext">{{ $receipt->product->name }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ number_format($receipt->unitprice, 2) }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $receipt->quantity }}</p></td>
-                    <td class="tableitem"><p class="itemtext">{{ number_format($receipt->amount, 2) }}</p></td>
+                    <td class="tableitem"><p class="itemtext"></p></td>
                 </tr><br>
 
             @endforeach
-            <tr class="tabletitle">
+            <tr></tr>
+            <tr style="background-color: #666; color: white;">
+              <td class="item"><p style="font-weight: bold; color: white;">Discount</p></td>
               <td></td>
               <td></td>
-              <td class="Rate"><p>Discount</p></td>
-              <td class="payment"><p>@if ($order) {{ number_format($order->discount, 2) }} @else 00.00 @endif</p></td>
+              <td class="payment"><p  style=" color: white;">@if ($order) {{ number_format($order->discount, 2) }} @else 00.00 @endif</p></td>
             </tr>
-            <tr class="tabletitle">
+            <tr class="" style="background-color: #666; color: white;">
+              <td class="item"><p style="font-weight: bold; color: white;">Total</p>
               <td></td>
               <td></td>
-              <td class="Rate"><p>Total</h2></p>
-              <td class="payment"><p>{{ number_format($order->total_price, 2) }}</p></td>
+              <td class="payment"><p style="color: white;">{{ number_format($order->total_price, 2) }}</p></td>
             </tr>
 
           </table>
-        </div><br><br><!--End Table-->
+        </div><br><!--End Table-->
+        <button id="print" onclick="printReceipt()" type="button" style="cursor: pointer; padding: 12px 40px; border-radius: 10px; border: none; margin-top: 30px; background: green; color: white; font-size: 16px; font-weight: bold;">Print Receipt</button>
 
-        @if($order)
-            {!! $order->barcode !!}
-            <p style="margin-left: 11%; font-size:20px; margin-top: 5px;"><strong>{{ $order->order_code }}</strong></p>
-            <button id="print" onclick="printReceipt()" type="button" style="cursor: pointer; padding: 12px 40px; border-radius: 10px; border: none; margin-top: 30px; background: green; color: white; font-size: 16px; font-weight: bold;">Print Receipt</button>
-        @endif
+        </div><br><br><!--End Table-->
             <div id="legalcopy">
           <p class="" style="text-align: center;"><strong>Thank you for your patronage!</strong>
           </p>
@@ -130,7 +128,7 @@
 
     #invoiceholder{
     width:100%;
-    hieght: 100%;
+    height: 100%;
     padding-top: 50px;
     }
     #headerimage{

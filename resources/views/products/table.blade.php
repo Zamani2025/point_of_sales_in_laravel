@@ -28,8 +28,8 @@
                         @endif()
                     </td>
                     @if(Auth::user()->is_admin)
-                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$product->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
-                        <td><a href="{{ route('deleteproduct', ['id' => $product->id]) }}"  onclick="confirm('Are you sure, You want to delete this product?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i> Delete</a></td>
+                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$product->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i></a></td>
+                        <td><a href="{{ route('deleteproduct', ['id' => $product->id]) }}"  onclick="confirm('Are you sure, You want to delete this product?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a></td>
                         <form action="{{route('deleteproduct', ['id' => $product->id])}}" id="formId" style="display: none;" method="POST">
                             @csrf
                         </form>
@@ -56,8 +56,8 @@
                         @endif()
                     </td>
                     @if(Auth::user()->is_admin)
-                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$product->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
-                        <td><a href="{{ route('deleteproduct', ['id' => $product->id]) }}"  onclick="confirm('Are you sure, You want to delete this product?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i> Delete</a></td>
+                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$product->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i></a></td>
+                        <td><a href="{{ route('deleteproduct', ['id' => $product->id]) }}"  onclick="confirm('Are you sure, You want to delete this product?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a></td>
                         <form action="{{route('deleteproduct', ['id' => $product->id])}}" id="formId" style="display: none;" method="POST">
                             @csrf
                         </form>

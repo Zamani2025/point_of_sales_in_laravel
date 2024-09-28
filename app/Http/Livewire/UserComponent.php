@@ -17,11 +17,11 @@ class UserComponent extends Component
     }
 
     public function searchUserByName(){
-        $this->searchUser = Employee::where('name', 'like', '%' . $this->searchByName  . '%')->get();
+        $this->searchUser = Employee::where('name', 'like', '%' . trim($this->searchByName)  . '%')->get();
         // dd($this->searchUser);
     }
     public function searchUserByEmail(){
-        $this->searchUser = Employee::where('email', 'like', '%' . $this->searchByEmail  . '%')->get();
+        $this->searchUser = Employee::where('employeeID', 'like', '%' . trim($this->searchByEmail)  . '%')->get();
         // dd($this->searchUser);
     }
     

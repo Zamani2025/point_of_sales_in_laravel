@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Coupen;
 use App\Models\Product;
 use App\Models\OrderDetail;
 use App\Models\Order;
@@ -31,7 +33,7 @@ class HomeController extends Controller
         $totalSales = OrderDetail::count();
         $totalProducts = Product::where('product_status', 1)->count();
         $totalIncomingProducts = Product::where('product_status', 0)->count();
-        $totalOrders = Order::count();
+        $totalOrders = Coupen::where('status', false)->count();
         $totalSuppliers = Supplier::count();
         $totalRevenue = Order::sum("total_price");
         $todaySales = OrderDetail::whereDate("created_at", Carbon::today()->format('Y-m-d'))->count();

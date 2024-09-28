@@ -7,15 +7,49 @@ use App\Models\Product;
 use App\Models\OrderDetail;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Coupen;
 use Carbon\Carbon;
 
 class OrderComponent extends Component
 {
     public $product_code, $totalprice, $productIncart, $pay_money, $balance, $discount, $total, $haveDiscount = 0;
+    public $token = "";
 
     public function mount(){
         $this->productIncart = Cart::all();
     }
+
+    public function validateToken(){
+        $tokens = Coupen::where('token', trim($this->token))->first();
+        
+        if($tokens) {
+            if($tokens->status == true){
+                toastr()->error("Coupon / Token already used");
+            }else{
+                $this->discount = $tokens->discount;
+                $tokens->status = true;
+                $tokens->save();
+            }
+        }else {
+            toastr()->error("Invalid Coupon / Token provided");
+        }
+    }
+
+    public function updateQty($itemId, $newQty)
+    {
+        // Find the cart item
+        $cartItem = Cart::find($itemId);
+        
+        // Update the quantity in the database
+        $cartItem->product_qty = $newQty;
+        $cartItem->product_price = $cartItem->product->price * $newQty; // Update the total price
+        $cartItem->save();
+
+        // Reload the cart items to refresh the view
+        $this->productIncart = Cart::all();
+    }
+
+
     public function InserttoCart(){
         $countProduct = Product::where('name', $this->product_code)->first();
         if(!$countProduct){

@@ -24,21 +24,26 @@
                         <form wire:submit.prevent="InserttoCart" class=" mb-2">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" wire:model="product_code" placeholder="Product Name" class="form-control">
+                                    <input list="options" wire:model="product_code" placeholder="Product Name" class="form-control">
+                                    <datalist id="options">
+                                        @foreach($products as  $item)
+                                            <option value="{{$item->name}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </datalist>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-left">
+                        <table class="table table-bordered table-left">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Product</th>
                                     <th></th>
                                     <th>Quantity</th>
+                                    <th></th>
                                     <th>Price</th>
-                                    <th>Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -51,23 +56,24 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                            <div class="row">
-                                                <div class="col-md-2">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-1">
                                                     <button type="button" wire:click="incrementQty({{$item->id}})" class="btn btn-dark btn-sm"> + </button>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <label for="" class="ml-2 mt-1">{{$item->product_qty}}</label>
+                                                <div class="col-md-3">
+                                                    <!-- <label for="" class="ml-2 mt-1">{{$item->product_qty}}</label> -->
+                                                    <input type="number" value="{{ $item->product_qty }}" onchange="this.dispatchEvent(new InputEvent('input'))" wire:change="updateQty({{ $item->id }}, $event.target.value)" class="form-control" style="width: 80px;">
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <button type="button" wire:click="decrementQty({{$item->id}})" class="btn btn-dark btn-sm"> - </button>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="number" name="price[]" readonly value="{{$item->product_price}}" class="form-control price" id="price">
+                                            <input type="number" name="price[]" hidden value="{{$item->product_price}}" class="form-control price" id="price">
                                         </td>
                                         <td>
-                                            <input type="number" name="total[]"  readonly  value="{{$item->product_qty * $item->product_price}}" class="form-control total" id="total">
+                                            <input type="number" name="total[]"  readonly  value="{{$item->product_price}}" class="form-control total" id="total">
                                         </td>
 
                                         <td><a class="btn btn-sm btn-danger" wire:click="removeCart({{$item->id }})"><i class="fa fa-times-circle"></i></a></td>
@@ -75,9 +81,9 @@
 
                                     <?php
                                         if($discount){
-                                            $totalprice = $totalprice + ($item->product_qty * $item->product_price) - (($item->product_qty * $item->product_price * $discount) / 100);
+                                            $totalprice = $totalprice + ( $item->product_price) - (($item->product_price * $discount) / 100);
                                         }else {
-                                            $totalprice = $totalprice + $item->product_qty * $item->product_price;
+                                            $totalprice = $totalprice +  $item->product_price;
                                         }
                                     ?>
                                 @endforeach
@@ -96,9 +102,11 @@
                     @if ($haveDiscount == 1)
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="form-group">
-                                    <input type="number" placeholder="Discount(%)" wire:model="discount" name="discount" id="" class="form-control">
-                                </div>
+                                <form wire:submit.prevent="validateToken">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Enter coupon" wire:model="token" name="discount" id="" class="form-control">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     @endif
@@ -118,7 +126,9 @@
                     <input type="hidden" value="{{ $discount }}" name="discount" id="" class="form-control">
                     <input type="hidden" value="{{ $totalprice }}" name="totalprice" id="" class="form-control">
                 <div class="card">
-                    <div class="card-header p-3 bg-success text-white" ><h4>Total <b class="totals">{{number_format($totalprice, 2)}}</b></h4></div>
+                    <div class="card-header p-3 bg-success text-white"><h4>Total <b class="totals">{{number_format($totalprice, 2)}}</b></h4></div>
+                    <h4 id="total" class="total" style="visibility: hidden;">{{$totalprice}}</h4>
+                    <!-- <input type="hidden" value="{{$totalprice}}" id="tota/l"> -->
                     <div class="card-body">
                         <div class="btn-group btn-sm">
                             <button type="button"  class="btn btn-danger btn-sm"><a target="_blank" href="{{route('previnvoice')}}" style="text-decoration: none; color: #fff;"> <i class="fa fa-print"></i> Print Receipt</a></button>
@@ -171,10 +181,13 @@
 <script>
     function makePayment() {
         var paystack = new PaystackPop();
+        var total = $("#total").val();
+        // var total = document.getElementById('total').textContent();
+        console.log(total);
         var handler = PaystackPop.setup({
             key: "pk_test_a14e60a1493c7f848279d1435433cd7d5fc52e51",
             email: "iddishani1@gmail.com",
-            amount: 100 * 100,
+            amount: parseInt(total) * 100,
             currency: "GHS",
             metadata: {
                 custome_fields: [

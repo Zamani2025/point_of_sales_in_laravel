@@ -18,7 +18,6 @@
           </p>
         </div><!--End Info-->
         <div class="title">
-          <h1>Invoice #{{ $invoice_id }}</h1>
           <p>
              Date: {{ \Carbon\Carbon::now()->toFormattedDateString() }}
           </p>
@@ -36,7 +35,7 @@
 
       </div><!--End Invoice Mid-->
         <div style="margin-left: 2%; margin-top: 12%;">
-            <h2>Monthly Invoice</h2>
+            <h1>Monthly Sales Report</h1>
         </div>
 
       <div id="invoice-bot">
@@ -69,10 +68,6 @@
           </table>
         </div><br><!--End Table-->
         <button id="print" onclick="printReceipt()" type="button" style="cursor: pointer; padding: 12px 40px; border-radius: 10px; border: none; margin-top: 30px; background: green; color: white; font-size: 16px; font-weight: bold;">Print Receipt</button>
-        <div id="legalcopy">
-          <p class="" style="text-align: center;"><strong>Thank you for your patronage!</strong>
-          </p>
-        </div>
 
       </div><!--End InvoiceBot-->
     </div><!--End Invoice-->

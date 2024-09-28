@@ -21,7 +21,7 @@
     <a href="{{route('supplier')}}" class="btn btn-outline ">Suppliers</a>
 </li>
 <li class="nav-item">
-    <a href="{{route('customer')}}" class="btn btn-outline ">Customers</a>
+    <a href="{{route('customer')}}" class="btn btn-outline ">Coupons</a>
 </li>
 <li class="nav-item">
     <a href="{{route('incomingproduct')}}" class="btn btn-outline ">Out Of Stock</a>

@@ -12,7 +12,7 @@ class TransactionComponent extends Component
     public $searchByDate;
 
     public function searchTransactionByName(){
-        $this->searchTransaction = Transaction::where('paid_amount', 'like', '%' . $this->searchByName . '%')->get();
+        $this->searchTransaction = Transaction::where('order_ids', 'like', '%' . trim($this->searchByName) . '%')->get();
     }
     public function searchTransactionByDate(){
         $this->searchTransaction = Transaction::where('created_at', 'like', '%' . $this->searchByDate . '%')->get();

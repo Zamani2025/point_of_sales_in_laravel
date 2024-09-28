@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @livewire('customer-component')
+    @livewire('coupon')
     <style>
         .modal.right .modal-dialog{
             top: 0;

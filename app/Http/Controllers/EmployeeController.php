@@ -19,6 +19,7 @@ class EmployeeController extends Controller
     {
         $user = new Employee();
         $user->name = $request->name;
+        $user->employeeID = $request->employeeID;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->ssnit_number = $request->ssnit_number;
@@ -34,6 +35,7 @@ class EmployeeController extends Controller
     {
         Employee::where('id', $id)->update([
             'name' => $request->name,
+            'employeeID' => $request->employeeID,
             'email' => $request->email,
             'phone' => $request->phone,
             'role' => $request->role,

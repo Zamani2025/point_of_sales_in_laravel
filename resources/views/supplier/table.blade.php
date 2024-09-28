@@ -22,8 +22,8 @@
                     <td>{{$supplier->email}}</td>
                     <td>{{$supplier->address}}</td>
                     @if(Auth::user()->is_admin)
-                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$supplier->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
-                        <td><a href="{{ route('deletesupplier', ['id' => $supplier->id]) }}"  onclick="confirm('Are you sure, You want to delete this supplier?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i> Delete</a></td>
+                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$supplier->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i></a></td>
+                        <td><a href="{{ route('deletesupplier', ['id' => $supplier->id]) }}"  onclick="confirm('Are you sure, You want to delete this supplier?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a></td>
                         <form action="{{route('deletesupplier', ['id' => $supplier->id])}}" id="formId" style="display: none;" method="POST">
                             @csrf
                         </form>
@@ -86,8 +86,8 @@
                     <td>{{$supplier->email}}</td>
                     <td>{{$supplier->address}}</td>
                     @if(Auth::user()->is_admin)
-                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$supplier->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i> Edit</a></td>
-                        <td><a href="{{ route('deletesupplier', ['id' => $supplier->id]) }}"  onclick="confirm('Are you sure, You want to delete this supplier?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i> Delete</a></td>
+                        <td><a href="#"  data-toggle="modal" data-target="#editProductModal{{$supplier->id}}" class="btn btn-primary btn-sm" ><i class="fa fa-edit fa-lg"></i></a></td>
+                        <td><a href="{{ route('deletesupplier', ['id' => $supplier->id]) }}"  onclick="confirm('Are you sure, You want to delete this supplier?') || event.stopImmediatePropagation(); event.preventDefault(); document.getElementById('formId').submit();" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a></td>
                         <form action="{{route('deletesupplier', ['id' => $supplier->id])}}" id="formId" style="display: none;" method="POST">
                             @csrf
                         </form>

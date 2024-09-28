@@ -12,7 +12,7 @@ class CustomerComponent extends Component
     public $searchByPhone;
 
     public function searchCustomerByName(){
-        $this->searchCustomer = Order::where('name', 'like', '%' . $this->searchByName . '%')->get();
+        $this->searchCustomer = Order::where('name', 'like', '%' . trim($this->searchByName) . '%')->get();
     }
     public function searchCustomerByPhone(){
         $this->searchCustomer = Order::where('phone', 'like', '%' . $this->searchByPhone . '%')->get();

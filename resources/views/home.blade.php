@@ -127,7 +127,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                                    Customers</div>
+                                                    Coupons</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalOrders }}</div>
                                             </div>
                                             <div class="col-auto">
@@ -171,9 +171,14 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-md-10 offset-md-1">
-                                <canvas id="canvas" height="250" width="750"></canvas>
+                            <div class="col-md-6">
+                                <canvas id="canvas1" height="300" width="750"></canvas>
                             </div>
+                            <div class="col-md-6">
+                                <canvas id="canvas2" height="300" width="750"></canvas>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
                         </div>
                     </div>
                 </div>
@@ -225,19 +230,41 @@
 
 @section('script')
     <script>
-        const ctx = document.getElementById('canvas');
-        var barColors = ["red", "green", "blue", "orange", "brown", "black", "red"];
+        const ctx = document.getElementById('canvas1');
+        const ctx1 = document.getElementById('canvas2');
+        var barColors = ["red", "green", "blue"];
+        var barColors1 = ["red", "green", "blue"];
 
         new Chart(ctx, {
             type: 'bar',
             data: {
-            labels: ['Today Sales', 'Today Revenue', 'Monthly Sales', 'Monthly Revenue', 'Total Sales', 'Total Revenue', 'Total Products'],
+            labels: ['Today Revenue', 'Monthly Revenue', 'Total Revenue'],
             datasets: [{
-                label: 'New view construction limited Charts',
-                data: ['{{ $todaySales }}', '{{ $todayRevenue }}','{{ $monthlySales }}','{{ $monthlyRevenue }}', '{{ $totalSales }}', '{{ $totalRevenue }}', '{{ $totalProducts }}'],
+                label: 'New view construction limited Revenue Charts ',
+                data: ['{{ $todayRevenue }}','{{ $monthlyRevenue }}','{{ $totalRevenue }}'],
                 borderWidth: 2,
                 borderColor: 'rgba(0, 0, 255, 0.1)',
                 backgroundColor: barColors
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+            labels: ['Today Sales', 'Monthly Sales', 'Total Sales'],
+            datasets: [{
+                label: 'New view construction limited Sales Charts',
+                data: ['{{ $todaySales }}','{{ $monthlySales }}','{{ $totalSales }}'],
+                borderWidth: 2,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                backgroundColor: barColors1
             }]
             },
             options: {

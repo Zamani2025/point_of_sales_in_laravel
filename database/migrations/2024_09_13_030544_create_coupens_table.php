@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('coupens', function (Blueprint $table) {
             $table->id();
-            $table->string("employeeID")->unique();
             $table->string('name');
-            $table->string('email');
-            $table->string('phone')->unique();
-            $table->string('salary');
-            $table->string('ssnit_number');
-            $table->string('role')->nullable();
-            $table->string('date')->nullable();
+            $table->string('token')->unique();
+            $table->integer('discount');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('coupens');
     }
 };

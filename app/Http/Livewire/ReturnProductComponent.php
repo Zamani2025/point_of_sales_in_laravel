@@ -13,7 +13,7 @@ class ReturnProductComponent extends Component
     public $searchProducts = [];
 
     public function searchProductByName(){
-        $this->searchProducts = ReturnProduct::where('name', 'like', '%' . $this->searchByName . '%')->get();
+        $this->searchProducts = ReturnProduct::where('name', 'like', '%' . trim($this->searchByName) . '%')->get();
     }
     public function searchProductByDate(){
         $this->searchProducts = ReturnProduct::where('date', 'like', '%' . $this->searchByDate . '%')->get();

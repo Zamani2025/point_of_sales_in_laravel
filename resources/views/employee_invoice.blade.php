@@ -19,7 +19,7 @@
           </p>
         </div><!--End Info-->
         <div class="title">
-          <h2>Invoice #{{ $invoice_id }}</h2>
+          <!-- <h2>Invoice #{{ $invoice_id }}</h2> -->
              Date: {{ \Carbon\Carbon::now()->toFormattedDateString() }}
           </p>
         </div><!--End Title-->
@@ -45,6 +45,7 @@
           <table>
             <tr class="tabletitle">
               <td class="Hours"><h2>Name</h2></td>
+              <td class="Hours"><h2>EmployeeID</h2></td>
               <td class="Hours"><h2>Email</h2></td>
               <td class="Rate"><h2>Phone</h2></td>
               <td class="Rate"><h2>Salary</h2></td>
@@ -55,6 +56,7 @@
             @foreach ($employees as $employee)
                 <tr class="service">
                     <td class="tableitem"><p class="itemtext">{{ $employee->name }}</p></td>
+                    <td class="tableitem"><p class="itemtext">{{ $employee->employeeID }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $employee->email }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $employee->phone }}</p></td>
                     <td class="tableitem"><p class="itemtext">{{ $employee->salary }}</p></td>

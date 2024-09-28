@@ -17,7 +17,7 @@ class SupplierComponent extends Component
     }
 
     public function searchSupplierByName(){
-        $this->searchSupplier = Supplier::where('name', 'like', '%' . $this->searchByName . '%')->get();
+        $this->searchSupplier = Supplier::where('name', 'like', '%' . trim($this->searchByName) . '%')->get();
     }
     public function searchSupplierByPhone(){
         $this->searchSupplier = Supplier::where('phone', 'like', '%' . $this->searchByPhone . '%')->get();
